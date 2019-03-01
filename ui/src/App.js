@@ -92,7 +92,7 @@ class App extends Component {
           onClick={e => this.submitJob(e)}
           acceptInput={this.state.job_id !== "" && this.state.url !== "" && parseInt(this.state.depth) > 0}
         />
-        <ImageGal result={this.state.result} jobRunning={this.state.job_in_progress} url={this.state.url} depth={this.state.depth} />
+        <ImageGal result={this.state.result} jobRunning={this.state.job_in_progress} />
       </div>
     );
   }
