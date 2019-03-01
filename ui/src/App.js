@@ -5,7 +5,7 @@ import Url from "./url";
 import Depth from "./depth";
 import ImageGal from "./image_gallery";
 
-const API_SERVER="http://localhost:8000";
+const API_SERVER="http://127.0.0.1:8000";
 
 class App extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class App extends Component {
       formData.append("url", this.state.url);
       formData.append("depth", this.state.depth);
 
-      fetch("http://localhost:5000/crawl", {
+      fetch(API_SERVER + "/crawl", {
         method: "POST",
         body: formData,
         cache: "no-cache"
