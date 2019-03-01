@@ -12,12 +12,19 @@ jobs = {}
 def hello():
     url = request.form['url']
     depth = request.form['depth']
-    # queue the task to celery and provide a job ID
-    if urlparse(url).scheme == '':
-        url = 'http://' + url
-    res = crawl.delay([url], int(depth))
-    jobs[res.id] = res
-    return jsonify(res.id)
+    try:
+        if url and int(depth) > 0:
+            # queue the task to celery and provide a job ID
+            if urlparse(url).scheme == '':
+                url = 'http://' + url
+            res = crawl.delay([url], int(depth))
+            jobs[res.id] = res
+            return jsonify(res.id)
+        else:
+            return abort(400)
+    except Exception as e:
+        print(e)
+        return abort(400)
 
 @app.route("/status/<jid>", methods=['GET'])
 def check_job_status(jid):

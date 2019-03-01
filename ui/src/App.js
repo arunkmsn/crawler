@@ -90,9 +90,9 @@ class App extends Component {
         <Depth onChange={e => this.depthChange(e)} value={this.state.depth} />
         <Crawl
           onClick={e => this.submitJob(e)}
-          acceptInput={!this.state.job_id}
+          acceptInput={!this.state.job_id && this.state.url !== "" && parseInt(this.state.depth) > 0}
         />
-        <ImageGal result={this.state.result} jobRunning={this.state.job_in_progress}/>
+        <ImageGal result={this.state.result} jobRunning={this.state.job_in_progress} url={this.state.url} depth={this.state.depth} />
       </div>
     );
   }
