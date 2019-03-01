@@ -5,7 +5,7 @@ import Url from "./url";
 import Depth from "./depth";
 import ImageGal from "./image_gallery";
 
-const API_SERVER="http://localhost:5000";
+const API_SERVER="http://localhost:8000";
 
 class App extends Component {
   constructor(props) {
@@ -90,7 +90,7 @@ class App extends Component {
         <Depth onChange={e => this.depthChange(e)} value={this.state.depth} />
         <Crawl
           onClick={e => this.submitJob(e)}
-          acceptInput={!this.state.job_id && this.state.url !== "" && parseInt(this.state.depth) > 0}
+          acceptInput={this.state.job_id !== "" && this.state.url !== "" && parseInt(this.state.depth) > 0}
         />
         <ImageGal result={this.state.result} jobRunning={this.state.job_in_progress} url={this.state.url} depth={this.state.depth} />
       </div>
