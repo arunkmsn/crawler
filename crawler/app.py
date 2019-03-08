@@ -8,6 +8,10 @@ CORS(app)
 
 jobs = {}
 
+@app.route("/", methods=['GET'])
+def index():
+    return 'api server for job management'
+
 @app.route("/crawl", methods=['POST'])
 def hello():
     url = request.form['url']
